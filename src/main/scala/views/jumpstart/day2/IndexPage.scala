@@ -57,12 +57,12 @@ case class IndexPage(tasks: List[Task], addTaskMapping: Mapping[String]):
          */
          table(cls := "ui very basic table",
            tbody(
-             tasks.map{task =>
+             tasks.zipWithIndex.map{(task, index) =>
                val dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
                val completeUrl = HomeController.completeTask(task.id).endpoint.url
                val deleteUrl = HomeController.deleteTask(task.id).endpoint.url
                tr(
-                 td(cls := "collapsing", task.id),
+                 td(cls := "collapsing", index),
                  td(cls := "collapsing", task.description),
                  td(cls := "collapsing", if (task.isCompleted) s"Completed at ${task.completedOn.map(_.format(dateTimeFormatter)).get}" else "Pending"),
                  td(cls := "collapsing", s"Created at ${task.created.format(dateTimeFormatter)}"),
