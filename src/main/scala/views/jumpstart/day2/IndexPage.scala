@@ -62,7 +62,7 @@ case class IndexPage(tasks: List[Task], addTaskMapping: Mapping[String]):
                val completeUrl = HomeController.completeTask(task.id).endpoint.url
                val deleteUrl = HomeController.deleteTask(task.id).endpoint.url
                tr(
-                 td(cls := "collapsing", index),
+                 td(cls := "collapsing", index + 1),
                  td(cls := "collapsing", if (task.isCompleted) div(task.description, cssattr("text-decoration") := "line-through") else task.description),
                  td(cls := "collapsing", if (task.isCompleted) s"Completed on ${task.completedOn.map(_.format(dateTimeFormatter)).get}" else "Pending"),
                  td(cls := "collapsing", s"Created on ${task.created.format(dateTimeFormatter)}"),
