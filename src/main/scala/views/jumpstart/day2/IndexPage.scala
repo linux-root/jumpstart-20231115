@@ -82,32 +82,27 @@ case class IndexPage(tasks: List[Task], addTaskMapping: Mapping[String]):
       script(tpe := "text/javascript",
         raw(
           s"""
-           function completeTask(url){
-               const xhr = new XMLHttpRequest();
-               xhr.open('PUT', url);
-               xhr.onload = () => {
-               if(xhr.status === 200) {
-                 console.log('completed the task')
-                 location.reload()
-                } else {
-                  alert('bad thing happened')
-                }
-               }
+           function sendRequest(method, url){
+                 const xhr = new XMLHttpRequest()
+                 xhr.open(method, url)
+                 xhr.onload = () => {
+                   if(xhr.status === 200) {
+                   location.reload()
+                 } else {
+                      alert('bad thing happened')
+                }}
                 xhr.send();
+           }
+
+           function completeTask(url){
+               sendRequest('PUT', url)
             }
+
            function deleteTask(url){
-             const xhr = new XMLHttpRequest();
-             xhr.open('DELETE', url);
-             xhr.onload = () => {
-             if(xhr.status === 200) {
-                 console.log('deleted the task')
-                 location.reload()
-              } else {
-                alert('bad thing happened')
-              }
-            }
-             xhr.send();
-           }""")
+             sendRequest('DELETE', url)
+           }
+
+           """)
       )
     )
   )
