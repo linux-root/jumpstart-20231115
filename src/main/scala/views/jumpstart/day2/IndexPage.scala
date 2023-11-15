@@ -67,7 +67,7 @@ case class IndexPage(tasks: List[Task], addTaskMapping: Mapping[String]):
                  td(cls := "collapsing", if (task.isCompleted) s"Completed at ${task.completedOn.map(_.format(dateTimeFormatter)).get}" else "Pending"),
                  td(cls := "collapsing", s"Created at ${task.created.format(dateTimeFormatter)}"),
                  td(cls := "collapsing",
-                   button("Complete", onclick := s"completeTask('$completeUrl')"),
+                   button("Complete", onclick := s"completeTask('$completeUrl')", ifTrue(task.isCompleted, disabled)),
                    button("Delete", onclick := s"deleteTask('$deleteUrl')"),
                  ),
                )
