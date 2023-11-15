@@ -64,8 +64,8 @@ case class IndexPage(tasks: List[Task], addTaskMapping: Mapping[String]):
                tr(
                  td(cls := "collapsing", index),
                  td(cls := "collapsing", if (task.isCompleted) div(task.description, cssattr("text-decoration") := "line-through") else task.description),
-                 td(cls := "collapsing", if (task.isCompleted) s"Completed at ${task.completedOn.map(_.format(dateTimeFormatter)).get}" else "Pending"),
-                 td(cls := "collapsing", s"Created at ${task.created.format(dateTimeFormatter)}"),
+                 td(cls := "collapsing", if (task.isCompleted) s"Completed on ${task.completedOn.map(_.format(dateTimeFormatter)).get}" else "Pending"),
+                 td(cls := "collapsing", s"Created on ${task.created.format(dateTimeFormatter)}"),
                  td(cls := "collapsing",
                    button("Complete", onclick := s"completeTask('$completeUrl')", ifTrue(task.isCompleted, disabled)),
                    button("Delete", onclick := s"deleteTask('$deleteUrl')"),
