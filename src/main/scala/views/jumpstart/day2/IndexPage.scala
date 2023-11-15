@@ -20,6 +20,7 @@ case class IndexPage(tasks: List[Task], addTaskMapping: Mapping[String]):
       Tags2.style(
         // For advanced developer, you can add extra CSS style below
         raw(
+          // CSS: credit to Christ
           """
             | td { padding: 10px !important; border-right: 1px solid rgba(0,0,0,0.3); border-top: 1px solid rgba(0,0,0,0.5) }
             | td:nth-child(3) { border-right: none }
